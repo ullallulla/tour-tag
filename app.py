@@ -1,5 +1,7 @@
-from flask import Flask, render_template, request, jsonify, flash, redirect
+from flask import Flask, render_template, request, jsonify, flash, redirect, url_for
 import time
+
+from flask.helpers import url_for
 
 
 
@@ -8,9 +10,11 @@ app = Flask(__name__)
 app.secret_key = "hello"
 
 
+departure = None
+
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', departure=departure)
 
 
 #def selectPorts():
@@ -31,12 +35,14 @@ def set_departure_time():
             error = "Time is required"
 
         if error is None:
+            global departure
+            departure = departure_time
             print('departure time', departure_time)
-            return redirect('/')
+            return redirect(url_for('index'))
+
 
         flash(error)
     return render_template("departure.html")
-
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
