@@ -32,7 +32,7 @@ def foo():
 
         if error is None:
             print('departure time', departureTime)
-            return render_template("index.html")
+            return redirect('/')
 
         flash(error)
     return render_template("departure.html")
