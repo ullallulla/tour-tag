@@ -22,16 +22,16 @@ def index():
 
 
 @app.route('/departure', methods=["GET", "POST"])
-def foo():
+def set_departure_time():
     if request.method == "POST":
         error = None
-        departureTime = request.form["departureTime"]
+        departure_time = request.form["departure_time"]
 
-        if not departureTime:
+        if not departure_time:
             error = "Time is required"
 
         if error is None:
-            print('departure time', departureTime)
+            print('departure time', departure_time)
             return redirect('/')
 
         flash(error)
