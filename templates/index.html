@@ -33,9 +33,11 @@
 
     <!-- Departure time , POST request ei toimi tällä hetkellä-->
     {% if departure != None %}
-    <div >{{ departure }}</div>
+    <div >The time chosen was {{ departure }}.</div>
     {% endif %}
-
+	
+    <p>Do you want to <a href = "{{ url_for('set_departure_time') }}">
+         <b>set the departure_time</b></a>?</p>
 
 </body>
 
