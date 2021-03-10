@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+<html>
+
+
+{% for message in get_flashed_messages() %}
+<div class="flash">{{ message }}</div>
+{% endfor %}
+
+
+<form method=post>
+    <label for="departure_time">Select a time:</label>
+    <input type="time" id="departure_time" name="departure_time">
+    <input type="submit">
+</form>
+
+</html>
+{% endblock %}

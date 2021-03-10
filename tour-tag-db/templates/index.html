@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+<html>
+
+<body>
+    <h1>My website</h1>
+
+
+
+
+
+    <p id="datetime"></p>
+    <script>
+
+        //initialize clock
+        getDate()
+
+        //set update interval for the clock, currently 1 seconds
+        var updateClock = setInterval(getDate, 1000)
+
+
+        //function for retrieving date and time
+        function getDate() {
+            var dt = new Date();
+            document.getElementById("datetime").innerHTML = (("0" + dt.getDate()).slice(-2)) + "." + (("0" + (dt.getMonth() + 1)).slice(-2)) + "." + (dt.getFullYear()) + " " + (("0" + dt.getHours()).slice(-2)) + ":" + (("0" + dt.getMinutes()).slice(-2));
+
+        }
+
+
+    </script>
+
+    <!-- Departure time , POST request ei toimi tällä hetkellä-->
+    {% if departure != None %}
+    <div >The time chosen was {{ departure }}.</div>
+    {% endif %}
+	
+</body>
+
+</html>
+{% endblock %}
