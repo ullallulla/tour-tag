@@ -1,12 +1,11 @@
-<html>
+{% extends "base.html" %}
 
-<head>
-    <link rel="stylesheet" href='/static/style.css' />
-</head>
+{% block content %}
+<html>
 
 <body>
     <h1>My website</h1>
-   
+
 
 
 
@@ -32,8 +31,11 @@
     </script>
 
     <!-- Departure time , POST request ei toimi tällä hetkellä-->
-    
-
+    {% if departure != None %}
+    <div >The time chosen was {{ departure }}.</div>
+    {% endif %}
+	
 </body>
 
 </html>
+{% endblock %}
