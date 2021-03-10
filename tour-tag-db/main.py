@@ -1,10 +1,9 @@
 from flask import Blueprint, render_template, request, jsonify, flash, redirect, url_for
 from . import db
 main = Blueprint('main', __name__)
-
 @main.route('/')
 def index():
-    return render_template('index.html', departure=departure)
+    return render_template('index.html')
 
 @main.route('/departure', methods=["GET", "POST"])
 def set_departure_time():
@@ -17,6 +16,7 @@ def set_departure_time():
 
         if error is None:
             
+             
             global departure
             departure = departure_time
             print('departure time', departure_time)
