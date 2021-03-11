@@ -8,8 +8,6 @@
 
 
 
-
-
     <p id="datetime"></p>
     <script>
 
@@ -30,11 +28,14 @@
 
     </script>
 
-    <!-- Departure time , POST request ei toimi tällä hetkellä-->
     {% if departure != None %}
     <div >The time chosen was {{ departure }}.</div>
     {% endif %}
 	
+    {% if grid != None %}
+    <div class="column" style="width: 300px;">{{ grid }}</div>
+    {% endif %}
+
 </body>
 
 </html>

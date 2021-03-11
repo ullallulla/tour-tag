@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<div class="container">
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+      <div class="notification is-danger">{{ message }}</div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+</div>
+
+<form method="POST">
+    <h3 class="title">Origin port</h3>
+
+    <div class="control">
+        <label class="radio">
+            <input type="radio" name="origin_port" value="Ahvenanmaa">
+            Ahvenanmaa
+        </label>
+    </div>
+    <div class="control">
+        <label class="radio">
+            <input type="radio" name="origin_port" value="Turku">
+            Turku
+        </label>
+    </div>
+    <div class="control">
+        <label class="radio">
+            <input type="radio" name="origin_port" value="Helsinki">
+            Helsinki
+        </label>
+    </div>
+    <div class="control">
+        <label class="radio">
+            <input type="radio" name="origin_port" value="Hamina">
+            Hamina
+        </label>
+    </div>
+    <div class="control">
+        <label class="radio">
+            <input type="radio" name="origin_port" value="Pori">
+            Pori
+        </label>
+    </div>
+    <div class="control">
+        <label class="radio">
+            <input type="radio" name="origin_port" value="Vaasa">
+            Vaasa
+        </label>
+    </div>
+    <div class="control">
+        <label class="radio">
+            <input type="radio" name="origin_port" value="Kokkola">
+            Kokkola
+        </label>
+    </div>
+    <div class="control">
+        <label class="radio">
+            <input type="radio" name="origin_port" value="Oulu">
+            Oulu
+        </label>
+    </div>
+
+
+
+
+    <h3 class="title">Destination ports</h3>
+
+    <div class="control">
+        <label class="checkbox">
+            <input type="checkbox" name="destination_port" value="Ahvenanmaa">
+            Ahvenanmaa
+        </label>
+    </div>
+    <div class="control">
+        <label class="checkbox">
+            <input type="checkbox" name="destination_port" value="Turku">
+            Turku
+        </label>
+    </div>
+    <div class="control">
+        <label class="checkbox">
+            <input type="checkbox" name="destination_port" value="Helsinki">
+            Helsinki
+        </label>
+    </div>
+    <div class="control">
+        <label class="checkbox">
+            <input type="checkbox" name="destination_port" value="Hamina">
+            Hamina
+        </label>
+    </div>
+    <div class="control">
+        <label class="checkbox">
+            <input type="checkbox" name="destination_port" value="Pori">
+            Pori
+        </label>
+    </div>
+    <div class="control">
+        <label class="checkbox">
+            <input type="checkbox" name="destination_port" value="Vaasa">
+            Vaasa
+        </label>
+    </div>
+    <div class="control">
+        <label class="checkbox">
+            <input type="checkbox" name="destination_port" value="Kokkola">
+            Kokkola
+        </label>
+    </div>
+    <div class="control">
+        <label class="checkbox">
+            <input type="checkbox" name="destination_port" value="Oulu">
+            Oulu
+        </label>
+    </div>
+    <input class="button is-light" type="submit" value="Submit">
+</form>
+
+
+
+
+
+{% endblock %}
