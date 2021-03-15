@@ -1,3 +1,6 @@
+{% extends "base.html" %}
+
+{% block content %}
 <html>
 
 
@@ -5,6 +8,9 @@
 <div class="flash">{{ message }}</div>
 {% endfor %}
 
+<h1 class="title">
+  Welcome, {{ name }}!
+</h1>
 
 <form method=post>
     <label for="departure_time">Select a time:</label>
@@ -13,3 +19,4 @@
 </form>
 
 </html>
+{% endblock %}

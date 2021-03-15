@@ -1,8 +1,7 @@
-<html>
+{% extends "base.html" %}
 
-<head>
-    <link rel="stylesheet" href='/static/style.css' />
-</head>
+{% block content %}
+<html>
 
 <body>
     <h1>My website</h1>
@@ -36,9 +35,7 @@
     <div >The time chosen was {{ departure }}.</div>
     {% endif %}
 	
-    <p>Do you want to <a href = "{{ url_for('set_departure_time') }}">
-         <b>set the departure_time</b></a>?</p>
-
 </body>
 
 </html>
+{% endblock %}
