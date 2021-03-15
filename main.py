@@ -8,10 +8,12 @@ from .ports import *
 main = Blueprint('main', __name__)
 
 departure = None
+origin_port = None
+destination_ports = None
 
 @main.route('/')
 def index():
-    return render_template('index.html', departure=departure, grid=unicornGrid)
+    return render_template('index.html', departure=departure, origin_port=origin_port, destination_ports=destination_ports, grid=unicornGrid)
 
 @main.route('/departure', methods=["GET", "POST"])
 @login_required
@@ -33,10 +35,12 @@ def set_departure_time():
     return render_template("departure.html", name=current_user.name)
 
 @main.route('/leader', methods=["GET", "POST"])
+@login_required
 def set_ports():
     if request.method == "POST":
         error = None
-
+        global origin_port
+        global destination_ports
         origin_port = request.form.get('origin_port')
         destination_ports = request.form.getlist('destination_port')
         print(origin_port)
@@ -55,8 +59,8 @@ def set_ports():
             toggle_ports(origin_port)
             for port in destination_ports:
                 toggle_ports(port)
-            return render_template("leader.html",grid=unicornGrid)
+            return redirect(url_for('main.index'))
 
         
         flash(error)
-    return render_template("leader.html", grid=unicornGrid)
+    return render_template("leader.html", grid=unicornGrid, name=current_user.name)
