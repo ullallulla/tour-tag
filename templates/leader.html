@@ -2,6 +2,9 @@
 
 {% block content %}
 
+{% if grid != None %}
+    <div class="column" style="width: 300px;">{{ grid }}</div>
+{% endif %}
 
 <div class="container">
 {% with messages = get_flashed_messages() %}
