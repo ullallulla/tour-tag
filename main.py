@@ -59,7 +59,7 @@ def set_ports():
             toggle_ports(origin_port)
             for port in destination_ports:
                 toggle_ports(port)
-            return redirect(url_for('main.index'))
+            return render_template("leader.html", grid=unicornGrid, name=current_user.name)
 
         
         flash(error)
