@@ -10,22 +10,19 @@ auth = Blueprint('auth', __name__)
 def login():
     name = request.form.get('name')
     password = request.form.get('password')
-    if request.method == 'POST':
-        if password == 'Driver':
-            #Mainly to help in testing, name functionality can be removed if necessary
-            if name != "":
-                new_user = User(name=name, password=generate_password_hash(password, method='sha256'))       
-                db.session.add(new_user)
-                db.session.commit()
-                user = User.query.filter_by(name=name).first()
-                login_user(user)
-                flash('You were successfully logged in as a driver.')
-                return redirect(url_for('main.set_departure_time'))
-            else:
-                flash('Name is required')
-        else:
-            flash('Please check your login details and try again.')
-    return render_template('login.html')
+    user = User.query.filter_by(name=name).first()
+    #new_user = User(name=name, password=generate_password_hash(password, method='sha256'))       
+    #db.session.add(new_user)
+    #db.session.commit()
+    if not user:
+        flash('Please input login details.')
+        return render_template('login.html')
+    if not check_password_hash(user.password, password):
+        flash('Incorrect login details.')
+        return render_template('login.html')
+    login_user(user)
+    flash('You were successfully logged in.')
+    return redirect(url_for('main.set_departure_time'))
 
 @auth.route('/logout')
 @login_required
