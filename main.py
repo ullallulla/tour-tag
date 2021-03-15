@@ -3,7 +3,7 @@ from flask_login import login_required, current_user
 from . import db
 from .models import User
 from .ports import *
-
+import datetime
 
 main = Blueprint('main', __name__)
 
@@ -41,6 +41,11 @@ def set_ports():
         destination_ports = request.form.getlist('destination_port')
         print(origin_port)
         print(destination_ports)
+        print(request.form.get('reset'), 'reset')
+        if request.form.get('reset') == 'Reset ports':
+            print('asd')
+            clear_ports()
+            return render_template("leader.html",grid=unicornGrid)
         if not origin_port:
             error = "Origin port is required"
 
@@ -52,6 +57,7 @@ def set_ports():
                 error = "Origin and destination ports need to be different"
             
         if error is None:
+            clear_ports()
             toggle_ports(origin_port)
             for port in destination_ports:
                 toggle_ports(port)
