@@ -148,7 +148,7 @@ def toggle_destination_port(port):
     
     print(unicornGrid)
 
-    """ testi = numpy.array(unicornGrid)
+    testi = numpy.array(unicornGrid)
     for x in range(16):
         for y in range(16):
             h = 0.0  # red
@@ -161,7 +161,7 @@ def toggle_destination_port(port):
             unicornhathd.set_pixel(x, y, red, green, blue)  # sets pixels on the hat
         unicornhathd.show()                             # show the pixels
         time.sleep(0.005)                               # tiny gap, sets frames to a smooth 200/sec
-    time.sleep(0.8) """  
+    time.sleep(0.8)  
 
 def clear_ports():
     for i in range(16):
