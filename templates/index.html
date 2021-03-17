@@ -26,21 +26,15 @@
 
 
     </script>
-
-    {% if departure != None %}
-    <div >Departure time is {{ departure }}.</div>
-    {% endif %}
 	
+    {% if departure != None %}
+        {% if next_port != None %}
+    <div >The ship will leave at {{ departure }} from {{ current_port }} to {{ next_port }}.</div>
+        {% endif %}
+    {% endif %}
+
     {% if success != None %}
     <div >Origin port is {{ origin_port }}.</div>
-    {% endif %}
-	
-    {% if success != None %}
-    <div >Current port is {{ current_port }}.</div>
-    {% endif %}
-	
-    {% if success != None %}
-    <div >Next port is {{ next_port }}.</div>
     {% endif %}
 	
     {% if success != None %}
