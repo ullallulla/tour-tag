@@ -35,6 +35,14 @@
     <div >Origin port is {{ origin_port }}.</div>
     {% endif %}
 	
+    {% if current_port != None %}
+    <div >Current port is {{ current_port }}.</div>
+    {% endif %}
+	
+    {% if next_port != None %}
+    <div >Next port is {{ next_port }}.</div>
+    {% endif %}
+	
     {% if destination_ports != None %}
 	<div >Destination ports are: </div>
 	<ol> 

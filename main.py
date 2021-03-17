@@ -10,10 +10,12 @@ main = Blueprint('main', __name__)
 departure = None
 origin_port = None
 destination_ports = None
+next_port = None
+current_port = None
 
 @main.route('/')
 def index():
-    return render_template('index.html', departure=departure, origin_port=origin_port, destination_ports=destination_ports, grid=unicornGrid)
+    return render_template('index.html', departure=departure, origin_port=origin_port, destination_ports=destination_ports, next_port=next_port, current_port=current_port, grid=unicornGrid)
 
 @main.route('/departure', methods=["GET", "POST"])
 @login_required
@@ -41,7 +43,11 @@ def set_ports():
         error = None
         global origin_port
         global destination_ports
+        global next_port
+        global current_port
         origin_port = request.form.get('origin_port')
+        current_port = request.form.get('current_port')
+        next_port = request.form.get('next_port')
         destination_ports = request.form.getlist('destination_port')
         print(origin_port)
         print(destination_ports)
@@ -50,7 +56,13 @@ def set_ports():
 
         if  len(destination_ports) == 0:
             error = "Destination port is required"
-        
+
+        if next_port not in destination_ports:
+            error = "Next port needs to be a destination port"
+            
+        if not current_port:
+            error = "Current port is required"
+            
         for port in destination_ports:
             if origin_port == port:
                 error = "Origin and destination ports need to be different"
@@ -61,6 +73,7 @@ def set_ports():
                 toggle_ports(port)
             return render_template("leader.html", grid=unicornGrid, name=current_user.name)
 
+        
         
         flash(error)
     return render_template("leader.html", grid=unicornGrid, name=current_user.name)
