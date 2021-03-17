@@ -42,45 +42,105 @@ def set_ports():
     if request.method == "POST":
         error = None
         global origin_port
-        global destination_ports
-        global next_port
         global current_port
+        global next_port
+        global destination_ports
         global success
         success = None
         origin_port = request.form.get('origin_port')
         current_port = request.form.get('current_port')
         next_port = request.form.get('next_port')
         destination_ports = request.form.getlist('destination_port')
-        print(origin_port)
-        print(destination_ports)
-        print(request.form.get('reset'), 'reset')
+        #print(origin_port)
+        #print(destination_ports)
+        #print(request.form.get('reset'), 'reset')
         if request.form.get('reset') == 'Reset ports':
-            print('asd')
+            #print('asd')
             clear_ports()
-            return render_template("leader.html",grid=unicornGrid)
+            return redirect(url_for('main.set_ports'))
         if not origin_port:
             error = "Origin port is required"
 
         if  len(destination_ports) == 0:
             error = "Destination port is required"
 
+        if not current_port:
+            error = "Current port is required"
+
         if next_port not in destination_ports:
             error = "Next port needs to be a destination port"
-            
             
         for port in destination_ports:
             if origin_port == port:
                 error = "Origin and destination ports need to be different"
-            
+
         if error is None:
             clear_ports()
             success = True
             toggle_ports(origin_port)
             for port in destination_ports:
                 toggle_ports(port)
-            return render_template("leader.html", grid=unicornGrid, name=current_user.name)
+            return render_template("stateupdate.html", grid=unicornGrid, name=current_user.name)
 
 
         
         flash(error)
     return render_template("leader.html", grid=unicornGrid, name=current_user.name)
+
+@main.route('/update', methods=["GET", "POST"])
+@login_required
+def state_update():
+    if not origin_port:
+        return redirect(url_for('main.set_ports'))
+    if len(destination_ports) == 0:
+        return redirect(url_for('main.set_ports'))
+    if request.method == "POST":
+        error = None
+        success = None
+        global current_port
+        global next_port
+        global new_next_port
+        arrival_port = next_port
+        new_next_port = request.form.get('next_port')
+        print("orig:", origin_port)
+        print("dest:", destination_ports)
+        print("next:", next_port)
+        print("Arr:", arrival_port)
+        print("Current:", current_port)
+        print(request.form.get('reset'), 'reset')
+        if request.form.get('reset') == 'Reset ports':
+            print('asd')
+            clear_ports()
+            return redirect(url_for('main.set_ports'))
+
+        #if arrival_port != next_port:
+            #error = "Arrival port needs to be the next port"
+
+        if new_next_port not in destination_ports:
+            error = "Next port needs to be a destination port"
+        
+        if new_next_port == next_port and len(destination_ports) != 1:
+            error = "New destination needs to be a different port"
+
+        if  len(destination_ports) == 0:
+            error = "Destination port is required"
+
+        if error is None:
+            clear_ports()
+            success = True
+            toggle_ports(origin_port)
+            destination_ports.remove(arrival_port)
+            current_port = arrival_port
+            next_port = new_next_port
+            flash('Success')
+            for port in destination_ports:
+                toggle_ports(port)
+            if len(destination_ports) == 0:
+                next_port = None
+                return redirect(url_for('main.set_ports'))
+            return render_template("stateupdate.html", grid=unicornGrid, name=current_user.name)
+
+
+        
+        flash(error)
+    return render_template("stateupdate.html", grid=unicornGrid, name=current_user.name)
