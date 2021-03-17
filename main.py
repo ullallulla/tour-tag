@@ -58,9 +58,9 @@ def set_ports():
             
         if error is None:
             clear_ports()
-            toggle_ports(origin_port)
+            toggle_origin_port(origin_port)
             for port in destination_ports:
-                toggle_ports(port)
+                toggle_destination_port(port)
             return render_template("leader.html",grid=unicornGrid)
 
         
