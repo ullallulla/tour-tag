@@ -88,13 +88,11 @@ def set_ports():
 @main.route('/update', methods=["GET", "POST"])
 @login_required
 def state_update():
-    print("dest:", destination_ports)
     if not origin_port:
         return redirect(url_for('main.set_ports'))
     if len(destination_ports) == 0:
         return redirect(url_for('main.set_ports'))
     if request.method == "POST":
-        print("dest:", destination_ports)
         error = None
         success = None
         global current_port
