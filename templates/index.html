@@ -4,7 +4,6 @@
 <html>
 
 <body>
-    <h1>My website</h1>
 
 
 
@@ -29,8 +28,29 @@
     </script>
 
     {% if departure != None %}
-    <div >The time chosen was {{ departure }}.</div>
+    <div >Departure time is {{ departure }}.</div>
     {% endif %}
+	
+    {% if success != None %}
+    <div >Origin port is {{ origin_port }}.</div>
+    {% endif %}
+	
+    {% if success != None %}
+    <div >Current port is {{ current_port }}.</div>
+    {% endif %}
+	
+    {% if success != None %}
+    <div >Next port is {{ next_port }}.</div>
+    {% endif %}
+	
+    {% if success != None %}
+	<div >Destination ports are: </div>
+	<ol> 
+	{%for i in range(8)%} 
+		<ul>{{destination_ports[i]}}</ul> 
+	{%endfor%} 
+	</ol> 
+	{% endif %}
 	
     {% if grid != None %}
     <div class="column" style="width: 300px;">{{ grid }}</div>
