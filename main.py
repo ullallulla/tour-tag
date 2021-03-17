@@ -92,19 +92,21 @@ def state_update():
         return redirect(url_for('main.set_ports'))
     if len(destination_ports) == 0:
         return redirect(url_for('main.set_ports'))
+    global new_destination_ports
+    new_destination_ports = destination_ports.copy()
+    global next_port
+    arrival_port = next_port
+    if len(new_destination_ports) == len(destination_ports):
+        new_destination_ports.remove(arrival_port)
     if request.method == "POST":
         error = None
         success = None
         global current_port
-        global next_port
         global new_next_port
-        arrival_port = next_port
         new_next_port = request.form.get('next_port')
-        if new_next_port not in destination_ports:
-            error = "Next port needs to be a destination port"
-        
-        if new_next_port == next_port and len(destination_ports) != 1:
-            error = "New destination needs to be a different port"
+        if new_next_port != 'Arrival':
+            if new_next_port not in destination_ports:
+                error = "Next port needs to be a destination port"
 
         if error is None:
             clear_ports()
@@ -120,8 +122,8 @@ def state_update():
             if len(destination_ports) == 0:
                 next_port = None
                 return redirect(url_for('main.set_ports'))
-            return render_template("stateupdate.html", grid=unicornGrid, name=current_user.name, destination_ports=destination_ports)
+            return redirect(url_for('main.state_update'))
 
         
         flash(error)
-    return render_template("stateupdate.html", grid=unicornGrid, name=current_user.name, destination_ports=destination_ports)
+    return render_template("stateupdate.html", grid=unicornGrid, name=current_user.name, new_destination_ports=new_destination_ports)

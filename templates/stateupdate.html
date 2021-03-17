@@ -23,7 +23,7 @@
 <form method="POST">
     <h3 class="title">Next port</h3>
 
-    {% if 'Ahvenanmaa' in destination_ports %}
+    {% if 'Ahvenanmaa' in new_destination_ports %}
     <div class="control">
         <label class="radio">
             <input type="radio" name="next_port" value="Ahvenanmaa">
@@ -31,7 +31,7 @@
         </label>
     </div>
     {% endif %}
-    {% if 'Turku' in destination_ports %}
+    {% if 'Turku' in new_destination_ports %}
     <div class="control">
         <label class="radio">
             <input type="radio" name="next_port" value="Turku">
@@ -39,7 +39,7 @@
         </label>
     </div>
     {% endif %}
-    {% if 'Helsinki' in destination_ports %}
+    {% if 'Helsinki' in new_destination_ports %}
     <div class="control">
         <label class="radio">
             <input type="radio" name="next_port" value="Helsinki">
@@ -47,7 +47,7 @@
         </label>
     </div>
     {% endif %}
-    {% if 'Hamina' in destination_ports %}
+    {% if 'Hamina' in new_destination_ports %}
     <div class="control">
         <label class="radio">
             <input type="radio" name="next_port" value="Hamina">
@@ -55,7 +55,7 @@
         </label>
     </div>
     {% endif %}
-    {% if 'Pori' in destination_ports %}
+    {% if 'Pori' in new_destination_ports %}
     <div class="control">
         <label class="radio">
             <input type="radio" name="next_port" value="Pori">
@@ -63,7 +63,7 @@
         </label>
     </div>
     {% endif %}
-    {% if 'Vaasa' in destination_ports %}
+    {% if 'Vaasa' in new_destination_ports %}
     <div class="control">
         <label class="radio">
             <input type="radio" name="next_port" value="Vaasa">
@@ -71,7 +71,7 @@
         </label>
     </div>
     {% endif %}
-    {% if 'Kokkola' in destination_ports %}
+    {% if 'Kokkola' in new_destination_ports %}
     <div class="control">
         <label class="radio">
             <input type="radio" name="next_port" value="Kokkola">
@@ -79,11 +79,19 @@
         </label>
     </div>
     {% endif %}
-    {% if 'Oulu' in destination_ports %}
+    {% if 'Oulu' in new_destination_ports %}
     <div class="control">
         <label class="radio">
             <input type="radio" name="next_port" value="Oulu">
             Oulu
+        </label>
+    </div>
+    {% endif %}
+    {% if new_destination_ports|length < 1 %}
+    <div class="control">
+        <label class="radio">
+            <input type="radio" name="next_port" value="Arrival">
+            Arrival
         </label>
     </div>
     {% endif %}
