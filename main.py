@@ -51,11 +51,11 @@ def set_ports():
         current_port = request.form.get('current_port')
         next_port = request.form.get('next_port')
         destination_ports = request.form.getlist('destination_port')
-        #print(origin_port)
-        #print(destination_ports)
-        #print(request.form.get('reset'), 'reset')
+        print(origin_port)
+        print(destination_ports)
+        print(request.form.get('reset'), 'reset')
         if request.form.get('reset') == 'Reset ports':
-            #print('asd')
+            print('asd')
             clear_ports()
             return redirect(url_for('main.set_ports'))
         if not origin_port:
@@ -80,7 +80,7 @@ def set_ports():
             toggle_ports(origin_port)
             for port in destination_ports:
                 toggle_ports(port)
-            return render_template("stateupdate.html", grid=unicornGrid, name=current_user.name)
+            return render_template("stateupdate.html", grid=unicornGrid, name=current_user.name, destination_ports=destination_ports)
 
 
         
@@ -90,6 +90,7 @@ def set_ports():
 @main.route('/update', methods=["GET", "POST"])
 @login_required
 def state_update():
+    print(destination_ports)
     if not origin_port:
         return redirect(url_for('main.set_ports'))
     if len(destination_ports) == 0:
@@ -102,28 +103,12 @@ def state_update():
         global new_next_port
         arrival_port = next_port
         new_next_port = request.form.get('next_port')
-        print("orig:", origin_port)
-        print("dest:", destination_ports)
-        print("next:", next_port)
-        print("Arr:", arrival_port)
-        print("Current:", current_port)
-        print(request.form.get('reset'), 'reset')
-        if request.form.get('reset') == 'Reset ports':
-            print('asd')
-            clear_ports()
-            return redirect(url_for('main.set_ports'))
-
-        #if arrival_port != next_port:
-            #error = "Arrival port needs to be the next port"
 
         if new_next_port not in destination_ports:
             error = "Next port needs to be a destination port"
         
         if new_next_port == next_port and len(destination_ports) != 1:
             error = "New destination needs to be a different port"
-
-        if  len(destination_ports) == 0:
-            error = "Destination port is required"
 
         if error is None:
             clear_ports()
@@ -138,9 +123,8 @@ def state_update():
             if len(destination_ports) == 0:
                 next_port = None
                 return redirect(url_for('main.set_ports'))
-            return render_template("stateupdate.html", grid=unicornGrid, name=current_user.name)
-
+            return render_template("stateupdate.html", grid=unicornGrid, name=current_user.name, destination_ports=destination_ports)
 
         
         flash(error)
-    return render_template("stateupdate.html", grid=unicornGrid, name=current_user.name)
+    return render_template("stateupdate.html", grid=unicornGrid, name=current_user.name, destination_ports=destination_ports)

@@ -23,57 +23,72 @@
 <form method="POST">
     <h3 class="title">Next port</h3>
 
+    {% if 'Ahvenanmaa' in destination_ports %}
     <div class="control">
         <label class="radio">
             <input type="radio" name="next_port" value="Ahvenanmaa">
             Ahvenanmaa
         </label>
     </div>
+    {% endif %}
+    {% if 'Turku' in destination_ports %}
     <div class="control">
         <label class="radio">
             <input type="radio" name="next_port" value="Turku">
             Turku
         </label>
     </div>
+    {% endif %}
+    {% if 'Helsinki' in destination_ports %}
     <div class="control">
         <label class="radio">
             <input type="radio" name="next_port" value="Helsinki">
             Helsinki
         </label>
     </div>
+    {% endif %}
+    {% if 'Hamina' in destination_ports %}
     <div class="control">
         <label class="radio">
             <input type="radio" name="next_port" value="Hamina">
             Hamina
         </label>
     </div>
+    {% endif %}
+    {% if 'Pori' in destination_ports %}
     <div class="control">
         <label class="radio">
             <input type="radio" name="next_port" value="Pori">
             Pori
         </label>
     </div>
+    {% endif %}
+    {% if 'Vaasa' in destination_ports %}
     <div class="control">
         <label class="radio">
             <input type="radio" name="next_port" value="Vaasa">
             Vaasa
         </label>
     </div>
+    {% endif %}
+    {% if 'Kokkola' in destination_ports %}
     <div class="control">
         <label class="radio">
             <input type="radio" name="next_port" value="Kokkola">
             Kokkola
         </label>
     </div>
+    {% endif %}
+    {% if 'Oulu' in destination_ports %}
     <div class="control">
         <label class="radio">
             <input type="radio" name="next_port" value="Oulu">
             Oulu
         </label>
     </div>
+    {% endif %}
 
     <input class="button is-light" type="submit" value="State Update">
-    <input class="button is-light" type="submit" name="reset" value="Reset ports">
 
 </form>
 
