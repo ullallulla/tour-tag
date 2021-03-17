@@ -60,7 +60,7 @@ def set_ports():
             return redirect(url_for('main.set_ports'))
         if not origin_port:
             error = "Origin port is required"
-
+            
         if  len(destination_ports) == 0:
             error = "Destination port is required"
 
