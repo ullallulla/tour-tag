@@ -80,9 +80,7 @@ def set_ports():
             toggle_ports(origin_port)
             for port in destination_ports:
                 toggle_ports(port)
-            return render_template("stateupdate.html", grid=unicornGrid, name=current_user.name, destination_ports=destination_ports)
-
-
+            return redirect(url_for('main.state_update'))
         
         flash(error)
     return render_template("leader.html", grid=unicornGrid, name=current_user.name)
@@ -90,12 +88,13 @@ def set_ports():
 @main.route('/update', methods=["GET", "POST"])
 @login_required
 def state_update():
-    print(destination_ports)
+    print("dest:", destination_ports)
     if not origin_port:
         return redirect(url_for('main.set_ports'))
     if len(destination_ports) == 0:
         return redirect(url_for('main.set_ports'))
     if request.method == "POST":
+        print("dest:", destination_ports)
         error = None
         success = None
         global current_port
@@ -103,7 +102,6 @@ def state_update():
         global new_next_port
         arrival_port = next_port
         new_next_port = request.form.get('next_port')
-
         if new_next_port not in destination_ports:
             error = "Next port needs to be a destination port"
         
@@ -114,8 +112,9 @@ def state_update():
             clear_ports()
             success = True
             toggle_ports(origin_port)
-            destination_ports.remove(arrival_port)
+            toggle_ports(arrival_port)
             current_port = arrival_port
+            destination_ports.remove(arrival_port)
             next_port = new_next_port
             flash('Success')
             for port in destination_ports:
