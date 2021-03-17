@@ -29,7 +29,7 @@
 	
     {% if departure != None %}
         {% if next_port != None %}
-    <div >The ship will leave at {{ departure }} from {{ current_port }} to {{ next_port }}.</div>
+        <div >The ship will leave at {{ departure }} from {{ current_port }} to {{ next_port }}.</div>
         {% endif %}
     {% endif %}
 
@@ -37,13 +37,22 @@
     <div >Origin port is {{ origin_port }}.</div>
     {% endif %}
 	
+    
     {% if success != None %}
-	<div >Destination ports are: </div>
-	<ol> 
-	{%for i in range(8)%} 
-		<ul>{{destination_ports[i]}}</ul> 
-	{%endfor%} 
-	</ol> 
+        {% if destination_ports|length < 1 %}
+        <div >Current port is {{ current_port }}.</div>
+        {% endif %}
+	{% endif %}
+
+    {% if success != None %}
+        {% if destination_ports|length > 0 %}
+	    <div >Destination ports are: </div>
+	    <ol> 
+	    {%for i in range(8)%} 
+		    <ul>{{destination_ports[i]}}</ul> 
+	    {%endfor%} 
+	    </ol> 
+        {% endif %}
 	{% endif %}
 	
     {% if grid != None %}
