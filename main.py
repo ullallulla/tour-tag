@@ -77,9 +77,9 @@ def set_ports():
         if error is None:
             clear_ports()
             success = True
-            toggle_ports(origin_port)
+            toggle_origin_port(origin_port)
             for port in destination_ports:
-                toggle_ports(port)
+                toggle_destination_port(port)
             return redirect(url_for('main.state_update'))
         
         flash(error)
@@ -111,14 +111,14 @@ def state_update():
         if error is None:
             clear_ports()
             success = True
-            toggle_ports(origin_port)
-            toggle_ports(arrival_port)
+            toggle_origin_port(origin_port)
+            toggle_origin_port(arrival_port)
             current_port = arrival_port
             destination_ports.remove(arrival_port)
             next_port = new_next_port
             flash('Success')
             for port in destination_ports:
-                toggle_ports(port)
+                toggle_destination_port(port)
             if len(destination_ports) == 0:
                 next_port = None
                 return redirect(url_for('main.set_ports'))
