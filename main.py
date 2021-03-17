@@ -12,10 +12,10 @@ origin_port = None
 destination_ports = None
 next_port = None
 current_port = None
-
+success = None
 @main.route('/')
 def index():
-    return render_template('index.html', departure=departure, origin_port=origin_port, destination_ports=destination_ports, next_port=next_port, current_port=current_port, grid=unicornGrid)
+    return render_template('index.html', success=success, departure=departure, origin_port=origin_port, destination_ports=destination_ports, next_port=next_port, current_port=current_port, grid=unicornGrid)
 
 @main.route('/departure', methods=["GET", "POST"])
 @login_required
@@ -45,6 +45,8 @@ def set_ports():
         global destination_ports
         global next_port
         global current_port
+        global success
+        success = None
         origin_port = request.form.get('origin_port')
         current_port = request.form.get('current_port')
         next_port = request.form.get('next_port')
@@ -65,8 +67,6 @@ def set_ports():
         if next_port not in destination_ports:
             error = "Next port needs to be a destination port"
             
-        if not current_port:
-            error = "Current port is required"
             
         for port in destination_ports:
             if origin_port == port:
@@ -74,12 +74,13 @@ def set_ports():
             
         if error is None:
             clear_ports()
+            success = True
             toggle_ports(origin_port)
             for port in destination_ports:
                 toggle_ports(port)
             return render_template("leader.html", grid=unicornGrid, name=current_user.name)
 
-        
+
         
         flash(error)
     return render_template("leader.html", grid=unicornGrid, name=current_user.name)
