@@ -1,3 +1,7 @@
+#import unicornhathd
+#import time, colorsys
+#import numpy
+
 unicornGrid = [[0]*16 for i in range(16)]
 
 ahvenanmaa = {
@@ -99,4 +103,26 @@ def toggle_ports(port):
         unicornGrid[oulu['y2']][oulu['x1']] = 1
         unicornGrid[oulu['y2']][oulu['x2']] = 1
     
+    print(unicornGrid)
+
+    """ testi = numpy.array(unicornGrid)
+    for x in range(16):
+        for y in range(16):
+            h = 0.0  # red
+            s = 1.0  # saturation at the top of the red scale
+            v = testi[x, y]      # brightness depends on range
+            r, g, b = colorsys.hsv_to_rgb(h, s, v)  # convert hsv back to RGB
+            red = int(r * 255.0)                    # makes 0-1 range > 0-255 range
+            green = int(g * 255.0)
+            blue = int(b * 255.0)
+            unicornhathd.set_pixel(x, y, red, green, blue)  # sets pixels on the hat
+        unicornhathd.show()                             # show the pixels
+        time.sleep(0.005)                               # tiny gap, sets frames to a smooth 200/sec
+    time.sleep(0.8) """  
+
+def clear_ports():
+    for i in range(16):
+        for j in range(16):
+            unicornGrid[i][j] = 0
+    #unicornhathd.off()
     print(unicornGrid)
