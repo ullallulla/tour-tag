@@ -43,7 +43,7 @@
     <div >Next port is {{ next_port }}.</div>
     {% endif %}
 	
-    {% if destination_ports != None %}
+    {% if (destination_ports != None) and (destination_ports|length > 0) %}
 	<div >Destination ports are: </div>
 	<ol> 
 	{%for i in range(8)%} 
@@ -51,6 +51,10 @@
 	{%endfor%} 
 	</ol> 
 	{% endif %}
+    {% if ((destination_ports == None or destination_ports|length == 0) and origin_port) %}
+    <h2 class=title >Arrived at the final destination</h2>
+    {% endif %}
+
 	
     {% if grid != None %}
     <div class="column" style="width: 300px;">{{ grid }}</div>

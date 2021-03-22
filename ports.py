@@ -109,6 +109,7 @@ def set_next_port():
 
 def set_arrived(next_port, destination_ports):
     destination_ports.remove(next_port)
+    print(destination_ports)
 
 
 
