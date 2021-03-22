@@ -11,6 +11,7 @@ def login():
     name = request.form.get('name')
     password = request.form.get('password')
     user = User.query.filter_by(name=name).first()
+    print(user)
     #new_user = User(name=name, password=generate_password_hash(password, method='sha256'))       
     #db.session.add(new_user)
     #db.session.commit()

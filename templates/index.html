@@ -31,19 +31,19 @@
     <div >Departure time is {{ departure }}.</div>
     {% endif %}
 	
-    {% if success != None %}
+    {% if origin_port != None %}
     <div >Origin port is {{ origin_port }}.</div>
     {% endif %}
 	
-    {% if success != None %}
+    {% if current_port != None %}
     <div >Current port is {{ current_port }}.</div>
     {% endif %}
 	
-    {% if success != None %}
+    {% if next_port != None %}
     <div >Next port is {{ next_port }}.</div>
     {% endif %}
 	
-    {% if success != None %}
+    {% if destination_ports != None %}
 	<div >Destination ports are: </div>
 	<ol> 
 	{%for i in range(8)%} 
