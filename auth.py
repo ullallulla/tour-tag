@@ -23,7 +23,10 @@ def login():
         return render_template('login.html')
     login_user(user)
     flash('You were successfully logged in.')
-    return redirect(url_for('main.set_departure_time'))
+    if name == 'Driver':
+        return redirect(url_for('main.set_departure_time'))
+    if name == 'Leader':
+        return redirect(url_for('main.set_ports'))
 
 @auth.route('/logout')
 @login_required
