@@ -52,16 +52,31 @@ def set_ports():
 
         if request.form.get('submit') == 'Submit':
 
-            origin_port = request.form.get('origin_port')
+            origin_port_new = request.form.get('origin_port')
             #current_port = request.form.get('current_port')
-            destination_ports = request.form.getlist('destination_port')
-            next_port = request.form.get('next_port')
+            destination_ports_new = request.form.getlist('destination_port')
 
             print('origin port',origin_port)
             print('destination port',destination_ports)
             #print(request.form.get('reset'), 'reset')
             
             current_port = origin_port
+
+            
+            for port in destination_ports_new:
+                if origin_port_new == port:
+                    error = "Origin and destination ports need to be different"
+                    break
+
+            if not origin_port_new:
+                error = "Origin port is required"
+
+            elif len(destination_ports_new) == 0:
+                error = "Destination port is required"
+
+            else:
+                origin_port = origin_port_new
+                destination_ports = destination_ports_new
 
 
         if request.form.get('update') == 'Update':
@@ -72,15 +87,22 @@ def set_ports():
         if request.form.get('reset') == 'Reset ports':
             print('asd')
             clear_ports()
-            return redirect(url_for('main.set_ports'))
+            origin_port = None
+            destination_ports = None
+            next_port = None
+
+            return redirect(url_for('main.set_ports', destination_ports=destination_ports))
 
 
 
         if request.form.get('arrived-button') == 'Arrived':
-            set_arrived(next_port, destination_ports)
-            current_port = next_port
-            next_port = None
-            return redirect(url_for('main.set_ports'))
+            if next_port == None:
+                error = ('No destination set, please set the destination via ''Next port''')
+            else:
+                set_arrived(next_port, destination_ports)
+                current_port = next_port
+                next_port = None
+                return redirect(url_for('main.set_ports', destination_ports=destination_ports))
 
 
 
@@ -90,29 +112,16 @@ def set_ports():
             else:
                 print('departed')
                 set_departed(next_port, destination_ports)
-                return redirect(url_for('main.set_ports'))
+                return redirect(url_for('main.set_ports', destination_ports=destination_ports))
 
 
 
-        if not origin_port:
-            error = "Origin port is required"
-
-        if  len(destination_ports) == 0:
-            error = "Destination port is required"
-
-            
-        for port in destination_ports:
-            if origin_port == port:
-                error = "Origin and destination ports need to be different"
 
         if error is None:
-            clear_ports()
-            #toggle_origin_port(origin_port)
-            #for port in destination_ports:
-                #toggle_destination_port(port)
-            return redirect(url_for('main.set_ports'))
+            
+            return redirect(url_for('main.set_ports', destination_ports=destination_ports))
         
         flash(error)
 
-    return render_template("leader.html", name=current_user.name)
+    return render_template("leader.html", name=current_user.name, destination_ports=destination_ports)
 

@@ -99,11 +99,9 @@ def toggle_destination_port(port):
 
 
 def clear_ports():
-    for i in range(16):
-        for j in range(16):
-            unicornGrid[i][j] = 0
     #unicornhathd.off()
-
+    return 
+    
 
 def set_next_port():
     'asd'
