@@ -1,7 +1,7 @@
 #import unicornhathd
 #import time, colorsys
 #import numpy
-from .colors import *
+from .colors import set_next_port_color
 
 
 

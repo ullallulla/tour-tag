@@ -159,7 +159,7 @@ def set_destination_port_color(port):
         unicornhathd.show()
         time.sleep(0.005)
     if port == turku['name']:
-        g = 0
+        r = 0
         g = 255
         b = 0
         unicornhathd.set_pixel(turku['y1'],turku['x1'], r, g, b)
@@ -169,7 +169,7 @@ def set_destination_port_color(port):
         unicornhathd.show()
         time.sleep(0.005)
     if port == helsinki['name']:
-        g = 0
+        r = 0
         g = 255
         b = 0
         unicornhathd.set_pixel(helsinki['y1'],helsinki['x1'], r, g, b)
@@ -179,7 +179,7 @@ def set_destination_port_color(port):
         unicornhathd.show()
         time.sleep(0.005)
     if port == hamina['name']:
-        g = 0
+        r = 0
         g = 255
         b = 0
         unicornhathd.set_pixel(hamina['y1'],hamina['x1'], r, g, b)
@@ -189,7 +189,7 @@ def set_destination_port_color(port):
         unicornhathd.show()
         time.sleep(0.005)
     if port == pori['name']:
-        g = 0
+        r = 0
         g = 255
         b = 0
         unicornhathd.set_pixel(pori['y1'],pori['x1'], r, g, b)
@@ -199,7 +199,7 @@ def set_destination_port_color(port):
         unicornhathd.show()
         time.sleep(0.005)
     if port == vaasa['name']:
-        g = 0
+        r = 0
         g = 255
         b = 0
         unicornhathd.set_pixel(vaasa['y1'],vaasa['x1'], r, g, b)
@@ -219,7 +219,7 @@ def set_destination_port_color(port):
         unicornhathd.show()
         time.sleep(0.005)        
     if port == oulu['name']:
-        g = 0
+        r = 0
         g = 255
         b = 0
         unicornhathd.set_pixel(oulu['y1'],oulu['x1'], r, g, b)
@@ -245,7 +245,7 @@ def set_next_port_color(port):
         unicornhathd.show()
         time.sleep(0.005)
     if port == turku['name']:
-        g = 0
+        r = 0
         g = 0
         b =  255
         unicornhathd.set_pixel(turku['y1'],turku['x1'], r, g, b)
@@ -255,7 +255,7 @@ def set_next_port_color(port):
         unicornhathd.show()
         time.sleep(0.005)
     if port == helsinki['name']:
-        g = 0
+        r = 0
         g = 0
         b =  255
         unicornhathd.set_pixel(helsinki['y1'],helsinki['x1'], r, g, b)
@@ -265,7 +265,7 @@ def set_next_port_color(port):
         unicornhathd.show()
         time.sleep(0.005)
     if port == hamina['name']:
-        g = 0
+        r = 0
         g = 0
         b =  255
         unicornhathd.set_pixel(hamina['y1'],hamina['x1'], r, g, b)
@@ -275,7 +275,7 @@ def set_next_port_color(port):
         unicornhathd.show()
         time.sleep(0.005)
     if port == pori['name']:
-        g = 0
+        r = 0
         g = 0
         b =  255
         unicornhathd.set_pixel(pori['y1'],pori['x1'], r, g, b)
@@ -285,7 +285,7 @@ def set_next_port_color(port):
         unicornhathd.show()
         time.sleep(0.005)
     if port == vaasa['name']:
-        g = 0
+        r = 0
         g = 0
         b =  255
         unicornhathd.set_pixel(vaasa['y1'],vaasa['x1'], r, g, b)
@@ -305,7 +305,7 @@ def set_next_port_color(port):
         unicornhathd.show()
         time.sleep(0.005)        
     if port == oulu['name']:
-        g = 0
+        r = 0
         g = 0
         b =  255
         unicornhathd.set_pixel(oulu['y1'],oulu['x1'], r, g, b)
