@@ -28,6 +28,19 @@ def login():
     if name == 'Leader':
         return redirect(url_for('main.set_ports'))
 
+# Alternative /login page for account generation purposes
+""" @auth.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        name = request.form.get('name')
+        password = request.form.get('password')
+        new_user = User(name=name, password=generate_password_hash(password, method='sha256'))       
+        db.session.add(new_user)
+        db.session.commit()
+        flash('Database succesfully updated.')
+        return render_template('login.html')
+    return render_template('login.html')
+ """
 @auth.route('/logout')
 @login_required
 def logout():
