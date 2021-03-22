@@ -77,10 +77,14 @@ def set_ports():
             else:
                 origin_port = origin_port_new
                 destination_ports = destination_ports_new
+                set_origin_port_color()
+                set_destination_port_color()
+
 
 
         if request.form.get('update') == 'Update':
             next_port = request.form.get('next_port')
+            set_next_port_color()
             return redirect(url_for('main.set_ports'))
 
 
