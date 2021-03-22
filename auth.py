@@ -22,7 +22,7 @@ def login():
         flash('Incorrect login details.')
         return render_template('login.html')
     login_user(user)
-    flash('You were successfully logged in.')
+    #flash('You were successfully logged in.')
     if name == 'Driver':
         return redirect(url_for('main.set_departure_time'))
     if name == 'Leader':
