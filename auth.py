@@ -28,9 +28,9 @@ def login():
     if name == 'Leader':
         return redirect(url_for('main.set_ports'))
 
-# Alternative /login page for account generation purposes
-""" @auth.route('/login', methods=['GET', 'POST'])
-def login():
+# /signup page for account generation purposes
+""" @auth.route('/signup', methods=['GET', 'POST'])
+def signup():
     if request.method == 'POST':
         name = request.form.get('name')
         password = request.form.get('password')
@@ -38,8 +38,8 @@ def login():
         db.session.add(new_user)
         db.session.commit()
         flash('Database succesfully updated.')
-        return render_template('login.html')
-    return render_template('login.html')
+        return render_template('signup.html')
+    return render_template('signup.html')
  """
 @auth.route('/logout')
 @login_required
