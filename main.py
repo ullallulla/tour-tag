@@ -128,4 +128,3 @@ def set_ports():
         flash(error)
 
     return render_template("leader.html", name=current_user.name, destination_ports=destination_ports)
-
