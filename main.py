@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, request, jsonify, flash, redirect,
 from flask_login import login_required, current_user
 from . import db
 from .models import User
+from .models import Data
 from .ports import *
 import datetime
 from .colors import *
