@@ -78,11 +78,13 @@ def set_ports():
 
 
         if request.form.get('update') == 'Update':
-            
-            next_port = request.form.get('next_port')
-            print(request.form.get('next_port'))
-            #set_next_port_color(next_port)
-            return redirect(url_for('main.set_ports'))
+            if request.form.get('next_port') == '':
+                error = 'Next port is required'
+            else:
+                next_port = request.form.get('next_port')
+                print(request.form.get('next_port'))
+                #set_next_port_color(next_port)
+                return redirect(url_for('main.set_ports'))
 
 
         if request.form.get('reset') == 'Reset ports':
