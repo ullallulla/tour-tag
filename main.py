@@ -77,14 +77,14 @@ def set_ports():
             else:
                 origin_port = origin_port_new
                 destination_ports = destination_ports_new
-                set_origin_port_color()
-                set_destination_port_color()
+                set_origin_port_color(origin_port)
+                set_destination_port_color(destination_ports)
 
 
 
         if request.form.get('update') == 'Update':
             next_port = request.form.get('next_port')
-            set_next_port_color()
+            set_next_port_color(next_port)
             return redirect(url_for('main.set_ports'))
 
 
@@ -115,7 +115,7 @@ def set_ports():
                 error = 'Next port needs to be set before departure'
             else:
                 print('departed')
-                set_departed(next_port, destination_ports)
+                set_departed(next_port, current_port, origin_port)
                 return redirect(url_for('main.set_ports', destination_ports=destination_ports))
 
 

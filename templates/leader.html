@@ -212,6 +212,240 @@
 <p align="center"><a href=/ >
     <button class='button is-light'>Home</button></a></p>
 
+<script language="javascript" type="text/javascript">
+
+let newID = 1
+
+function dynamicdropdown(listindex, id)
+{   
+    if (id === 'source') {
+        switch (listindex)
+    {
+
+    /*case "ahvenanmaa" :
+        document.getElementById("port").options[0]=new Option("Select port","");
+        document.getElementById("port").options[1]=new Option("AHVENANMAA","ahvenanmaa");
+        document.getElementById("port").options[2]=new Option("TURKU","turku");
+        document.getElementById("port").options[3]=new Option("HELSINKI","helsinki");
+        document.getElementById("port").options[4]=new Option("HAMINA","hamina");
+        document.getElementById("port").options[5]=new Option("PORI","pori");
+        document.getElementById("port").options[6]=new Option("VAASA","vaasa");
+        document.getElementById("port").options[7]=new Option("KOKKOLA","kokkola");
+        document.getElementById("port").options[8]=new Option("OULU","oulu");*/
+
+    case "ahvenanmaa" :
+        document.getElementById("port").options[0]=new Option("Select port","");
+        
+        document.getElementById("port").options[1]=new Option("TURKU","turku");
+        
+        break;
+    case "turku" :
+        document.getElementById("port").options[0]=new Option("Select port","");
+        
+        document.getElementById("port").options[1]=new Option("HELSINKI","helsinki");
+        
+        document.getElementById("port").options[2]=new Option("PORI","pori");
+        
+        break;
+    
+    case "helsinki" : 
+        document.getElementById("port").options[0]=new Option("Select port","");
+        
+        document.getElementById("port").options[1]=new Option("TURKU","turku");
+        
+        document.getElementById("port").options[2]=new Option("HAMINA","hamina");
+        
+        break;
+
+    case "hamina" :
+        document.getElementById("port").options[0]=new Option("Select port","");
+        
+        document.getElementById("port").options[1]=new Option("HELSINKI","helsinki");
+        
+        break;
+
+    case "pori":
+        document.getElementById("port").options[0]=new Option("Select port","");
+        document.getElementById("port").options[1]=new Option("AHVENANMAA","ahvenanmaa");
+        document.getElementById("port").options[2]=new Option("TURKU","turku");
+        
+        
+        document.getElementById("port").options[3]=new Option("VAASA","vaasa");
+        
+        break;
+    
+    case "vaasa":
+        document.getElementById("port").options[0]=new Option("Select port","");
+        
+        document.getElementById("port").options[1]=new Option("PORI","pori");
+        document.getElementById("port").options[2]=new Option("KOKKOLA","kokkola");
+        break;
+
+    case "kokkola":
+        document.getElementById("port").options[0]=new Option("Select port","");
+        
+        document.getElementById("port").options[1]=new Option("VAASA","vaasa");
+        document.getElementById("port").options[2]=new Option("OULU","oulu");
+        break;
+
+    case "oulu":
+        document.getElementById("port").options[0]=new Option("Select port","");
+        
+        document.getElementById("port").options[1]=new Option("KOKKOLA","kokkola");
+        break;
+
+    }
+    return true;
+    }
+    else {
+        let oldPort = Number(id.slice(4)) + 1
+        let newPort = `port${oldPort}`
+
+        
+        switch (listindex)
+        {
+    
+        case "ahvenanmaa" :
+            document.getElementById(newPort).options[0]=new Option("Select port","");
+            
+            document.getElementById(newPort).options[1]=new Option("TURKU","turku");
+            
+            break;
+        case "turku" :
+            document.getElementById(newPort).options[0]=new Option("Select port","");
+            
+            document.getElementById(newPort).options[1]=new Option("HELSINKI","helsinki");
+            
+            document.getElementById(newPort).options[2]=new Option("PORI","pori");
+            
+            break;
+        
+        case "helsinki" : 
+            document.getElementById(newPort).options[0]=new Option("Select port","");
+            
+            document.getElementById(newPort).options[1]=new Option("TURKU","turku");
+            
+            document.getElementById(newPort).options[2]=new Option("HAMINA","hamina");
+            
+            break;
+    
+        case "hamina" :
+            document.getElementById(newPort).options[0]=new Option("Select port","");
+            
+            document.getElementById(newPort).options[1]=new Option("HELSINKI","helsinki");
+            
+            break;
+    
+        case "pori":
+            document.getElementById(newPort).options[0]=new Option("Select port","");
+            document.getElementById(newPort).options[1]=new Option("AHVENANMAA","ahvenanmaa");
+            document.getElementById(newPort).options[2]=new Option("TURKU","turku");
+            
+            
+            document.getElementById(newPort).options[3]=new Option("VAASA","vaasa");
+            
+            break;
+        
+        case "vaasa":
+            document.getElementById(newPort).options[0]=new Option("Select port","");
+            
+            document.getElementById(newPort).options[1]=new Option("PORI","pori");
+            document.getElementById(newPort).options[2]=new Option("KOKKOLA","kokkola");
+            break;
+    
+        case "kokkola":
+            document.getElementById(newPort).options[0]=new Option("Select port","");
+            
+            document.getElementById(newPort).options[1]=new Option("VAASA","vaasa");
+            document.getElementById(newPort).options[2]=new Option("OULU","oulu");
+            break;
+    
+        case "oulu":
+            document.getElementById(newPort).options[0]=new Option("Select port","");
+            
+            document.getElementById(newPort).options[1]=new Option("KOKKOLA","kokkola");
+            break;
+    
+        }
+        return true;
+    }
+    }
+
+
+    function addNew() {
+        
+
+        // Get the main Div in which all the other divs will be added
+        var mainContainer = document.getElementById('sub_category_div');
+        
+        // Create a new div for holding text and button input elements
+        var newDiv = document.createElement('div');
+
+        // Create a new text input
+        var newDropdown = document.createElement('select');
+        newDropdown.setAttribute("id", `port${newID}`);
+        newDropdown.setAttribute("name", `port${newID}`)
+        newDropdown.setAttribute("onchange", "javascript: dynamicdropdown(this.options[this.selectedIndex].value, id);")
+        newDropdownOption = document.createElement("option");
+        newDropdownOption.value = "";
+        newDropdownOption.text = "Select port";
+
+        newDropdown.add(newDropdownOption);
+
+        // Create buttons for creating and removing inputs
+        var newAddButton = document.createElement('input');
+        newAddButton.type = "button";
+        newAddButton.value = " + ";
+
+        var newDelButton = document.createElement('input');
+        newDelButton.type = "button";
+        newDelButton.value = " - ";
+
+        // Append new text input to the newDiv
+        newDiv.appendChild(newDropdown);
+
+        // Append new button inputs to the newDiv
+        newDiv.appendChild(newAddButton);
+        newDiv.appendChild(newDelButton);
+
+        // Append newDiv input to the mainContainer div
+        mainContainer.appendChild(newDiv);
+
+        // Add a handler to button for deleting the newDiv from the mainContainer
+        newAddButton.onclick = addNew;
+
+        newDelButton.onclick = function() {
+                mainContainer.removeChild(newDiv);
+                newID -= 1
+        };
+        newID += 1
+}
+</script>
+
+<title>Dynamic Drop Down List</title>
+
+<div class="category_div" id="category_div">Source:
+    <select id="source" name="source" onchange="javascript: dynamicdropdown(this.options[this.selectedIndex].value, id);">
+    <option value="">Select source</option>
+    <option value="ahvenanmaa">AHVENANMAA</option>
+    <option value="turku">TURKU</option>
+    <option value="helsinki">HELSINKI</option>
+    <option value="hamina">HAMINA</option>
+    <option value="pori">PORI</option>
+    <option value="vaasa">VAASA</option>
+    <option value="kokkola">KOKKOLA</option>
+    <option value="oulu">OULU</option>
+    </select>
+</div>
+<div class="sub_category_div" id="sub_category_div" >Port:
+    <script type="text/javascript" language="JavaScript">
+    document.write('<select name="port" id="port" onchange="javascript: dynamicdropdown(this.options[this.selectedIndex].value, id);"><option value="" >Select port</option></select>')
+    </script>
+    
+    
+    <input type="button" value=" + " onClick="addNew();">
+</div>
+
 
 
 {% endblock %}
