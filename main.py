@@ -56,35 +56,32 @@ def set_ports():
             #current_port = request.form.get('current_port')
             destination_ports_new = request.form.getlist('destination_port')
 
-            print('origin port',origin_port)
-            print('destination port',destination_ports)
+            print('origin port',origin_port_new)
+            print('destination port',destination_ports_new)
             #print(request.form.get('reset'), 'reset')
             
             current_port = origin_port
 
-            
-            for port in destination_ports_new:
-                if origin_port_new == port:
-                    error = "Origin and destination ports need to be different"
-                    break
 
             if not origin_port_new:
                 error = "Origin port is required"
 
-            elif len(destination_ports_new) == 0:
+            elif len(destination_ports_new) == 1 and destination_ports_new[0] == '':
                 error = "Destination port is required"
 
             else:
                 origin_port = origin_port_new
                 destination_ports = destination_ports_new
-                set_origin_port_color(origin_port)
-                set_destination_port_color(destination_ports)
+                #set_origin_port_color(origin_port)
+                #set_destination_port_color(destination_ports)
 
 
 
         if request.form.get('update') == 'Update':
+            
             next_port = request.form.get('next_port')
-            set_next_port_color(next_port)
+            print(request.form.get('next_port'))
+            #set_next_port_color(next_port)
             return redirect(url_for('main.set_ports'))
 
 
