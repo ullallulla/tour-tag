@@ -127,20 +127,3 @@ def set_ports():
         flash(error)
 
     return render_template("leader.html", name=current_user.name, destination_ports=destination_ports)
-
-
-
-@main.route('/data/<boat>', methods=["GET"])
-@login_required
-def boat_data(boat):
-   ports = Data.query.filter_by(boat=boat).all()
-
-   port_list = []
-
-   for port in ports:
-       port_dict = {}
-       port_dict['id'] = port.id
-       port_dict['port'] = port.name
-       port_dict['arrival_time'] = port.arrival_time
-       port_dict['departure_time'] = port.departure_time
-       port_list.append(port_dict)
