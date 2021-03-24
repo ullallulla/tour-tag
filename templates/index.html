@@ -13,7 +13,7 @@
         //initialize clock
         getDate()
 
-        //set update interval for the clock, currently 1 minute
+        //set update interval for the clock, currently 1 seconds
         var updateClock = setInterval(getDate, 1000)
 
 
@@ -26,12 +26,14 @@
 
 
     </script>
-
-    {% if departure != None %}
-    <div >Departure time is {{ departure }}.</div>
-    {% endif %}
 	
-    {% if origin_port != None %}
+    {% if departure != None %}
+        {% if next_port != None %}
+        <div >The ship will leave at {{ departure }} from {{ current_port }} to {{ next_port }}.</div>
+        {% endif %}
+    {% endif %}
+
+    {% if success != None %}
     <div >Origin port is {{ origin_port }}.</div>
     {% endif %}
 	
