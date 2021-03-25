@@ -1,5 +1,10 @@
-# tour-tag
-Embedded systems development Tour-Tag
+# Tour-Tag
+Embedded system called Tour-Tag
+
+Tour-Tag requires a raspberry pi and unicornhathd in order to work. 
+Tour-Tag displays ports via LEDs on the unicornhathd, port selection and 
+port state changes etc are handled on a Flask webserver.
+
 
 ## Setup
 To run this project, clone the repository 
