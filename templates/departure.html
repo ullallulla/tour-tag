@@ -12,8 +12,11 @@
   Welcome, {{ name }}!
 </h1>
 {%if boat_name != None %}
-  {{boat_name}}
+  <p class="subtitle is-5">Boat: {{boat_name}}</p>
 {% endif %}
+
+</br>
+</br>
 
 <form method=post>
     <label for="departure_time">Select departure time:</label></br>

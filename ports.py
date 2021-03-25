@@ -1,6 +1,5 @@
 #import unicornhathd
 #import time, colorsys
-#import numpy
 from .colors import *
 
 
@@ -8,7 +7,7 @@ from .colors import *
 
 
 def clear_ports():
-    unicornhathd.off()
+    #unicornhathd.off()
     return 
     
 
@@ -16,10 +15,10 @@ def clear_ports():
 
 def set_arrived(next_port, destination_ports):
     destination_ports.remove(next_port)
-    if len(destination_ports) == 0:
-        set_final_destination_color(next_port)
-    else:
-        set_current_port_color(next_port)
+    #if len(destination_ports) == 0:
+        #set_final_destination_color(next_port)
+    #else:
+        #set_current_port_color(next_port)
     #print(destination_ports)
 
 

@@ -7,7 +7,7 @@
 
 
 
-    <p id="datetime"></p>
+    <p class="title is-1" id="datetime"></p>
     <script>
 
         //initialize clock
@@ -26,33 +26,32 @@
 
 
     </script>
-
     {% if departure != None %}
-    <div >Departure time is {{ departure }}.</div>
+    <div class="title is-2">Departure time is {{ departure }}.</div>
     {% endif %}
 	
     {% if origin_port != None %}
-    <div >Origin port is {{ origin_port }}.</div>
+    <div class="title is-2">Origin port is {{ origin_port }}.</div>
     {% endif %}
 	
     {% if current_port != None %}
-    <div >Current port is {{ current_port }}.</div>
+    <div class="title is-2">Current port is {{ current_port }}.</div>
     {% endif %}
 	
     {% if next_port != None %}
-    <div >Next port is {{ next_port }}.</div>
+    <div class="title is-2">Next port is {{ next_port }}.</div>
     {% endif %}
 	
     {% if (destination_ports != None) and (destination_ports|length > 0) %}
-	<div >Destination ports are: </div>
+	<div class="title is-2">Destination ports are: </div>
 	<ol> 
 	{%for i in range(8)%} 
-		<ul>{{destination_ports[i]}}</ul> 
+		<ul class="title is-3">{{destination_ports[i]}}</ul> 
 	{%endfor%} 
 	</ol> 
 	{% endif %}
     {% if ((destination_ports == None or destination_ports|length == 0) and origin_port) %}
-    <h2 class=title >Arrived at the final destination</h2>
+    <h2 class="title is-1" >Arrived at the final destination</h2>
     {% endif %}
 
 	
