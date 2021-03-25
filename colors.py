@@ -1,11 +1,11 @@
-""" import unicornhathd
+import unicornhathd
 import time, colorsys
 from .ports import *
 from .main import *
 
 
-åland = {
-    "name": "Åland",
+aland = {
+    "name": "Aland",
     "y1": 14,
     "y2": 15,
     "x1": 0,
@@ -62,14 +62,14 @@ oulu = {
 }
 
 def set_origin_port_color(port):
-    if port == åland['name']:
+    if port == aland['name']:
         r = 255
         g = 0
         b = 0
-        unicornhathd.set_pixel(åland['y1'],åland['x1'], r, g, b)
-        unicornhathd.set_pixel(åland['y1'],åland['x2'], r, g, b)
-        unicornhathd.set_pixel(åland['y2'],åland['x1'], r, g, b)
-        unicornhathd.set_pixel(åland['y2'],åland['x2'], r, g, b)
+        unicornhathd.set_pixel(aland['y1'],aland['x1'], r, g, b)
+        unicornhathd.set_pixel(aland['y1'],aland['x2'], r, g, b)
+        unicornhathd.set_pixel(aland['y2'],aland['x1'], r, g, b)
+        unicornhathd.set_pixel(aland['y2'],aland['x2'], r, g, b)
         unicornhathd.show()
         time.sleep(0.005)
     if port == turku['name']:
@@ -148,14 +148,14 @@ def set_origin_port_color(port):
 
 def set_destination_port_color(ports):
     for port in ports:
-        if port == åland['name']:
+        if port == aland['name']:
             r = 0
             g = 255
             b = 0
-            unicornhathd.set_pixel(åland['y1'],åland['x1'], r, g, b)
-            unicornhathd.set_pixel(åland['y1'],åland['x2'], r, g, b)
-            unicornhathd.set_pixel(åland['y2'],åland['x1'], r, g, b)
-            unicornhathd.set_pixel(åland['y2'],åland['x2'], r, g, b)
+            unicornhathd.set_pixel(aland['y1'],aland['x1'], r, g, b)
+            unicornhathd.set_pixel(aland['y1'],aland['x2'], r, g, b)
+            unicornhathd.set_pixel(aland['y2'],aland['x1'], r, g, b)
+            unicornhathd.set_pixel(aland['y2'],aland['x2'], r, g, b)
             unicornhathd.show()
             time.sleep(0.005)
         if port == turku['name']:
@@ -234,14 +234,14 @@ def set_destination_port_color(ports):
 
 
 def set_next_port_color(port):
-    if port == åland['name']:
+    if port == aland['name']:
         r = 0
         g = 0
         b =  255
-        unicornhathd.set_pixel(åland['y1'],åland['x1'], r, g, b)
-        unicornhathd.set_pixel(åland['y1'],åland['x2'], r, g, b)
-        unicornhathd.set_pixel(åland['y2'],åland['x1'], r, g, b)
-        unicornhathd.set_pixel(åland['y2'],åland['x2'], r, g, b)
+        unicornhathd.set_pixel(aland['y1'],aland['x1'], r, g, b)
+        unicornhathd.set_pixel(aland['y1'],aland['x2'], r, g, b)
+        unicornhathd.set_pixel(aland['y2'],aland['x1'], r, g, b)
+        unicornhathd.set_pixel(aland['y2'],aland['x2'], r, g, b)
         unicornhathd.show()
         time.sleep(0.005)
     if port == turku['name']:
@@ -321,14 +321,14 @@ def set_next_port_color(port):
 
 
 def clear_port_color(port):
-    if port == åland['name']:
+    if port == aland['name']:
         r = 0
         g = 0
         b = 0
-        unicornhathd.set_pixel(åland['y1'],åland['x1'], r, g, b)
-        unicornhathd.set_pixel(åland['y1'],åland['x2'], r, g, b)
-        unicornhathd.set_pixel(åland['y2'],åland['x1'], r, g, b)
-        unicornhathd.set_pixel(åland['y2'],åland['x2'], r, g, b)
+        unicornhathd.set_pixel(aland['y1'],aland['x1'], r, g, b)
+        unicornhathd.set_pixel(aland['y1'],aland['x2'], r, g, b)
+        unicornhathd.set_pixel(aland['y2'],aland['x1'], r, g, b)
+        unicornhathd.set_pixel(aland['y2'],aland['x2'], r, g, b)
         unicornhathd.show()
         time.sleep(0.005)
     if port == turku['name']:
@@ -405,14 +405,14 @@ def clear_port_color(port):
 #######################################
 
 def set_current_port_color(port):
-    if port == åland['name']:
+    if port == aland['name']:
         r = 255
         g = 100
         b = 0
-        unicornhathd.set_pixel(åland['y1'],åland['x1'], r, g, b)
-        unicornhathd.set_pixel(åland['y1'],åland['x2'], r, g, b)
-        unicornhathd.set_pixel(åland['y2'],åland['x1'], r, g, b)
-        unicornhathd.set_pixel(åland['y2'],åland['x2'], r, g, b)
+        unicornhathd.set_pixel(aland['y1'],aland['x1'], r, g, b)
+        unicornhathd.set_pixel(aland['y1'],aland['x2'], r, g, b)
+        unicornhathd.set_pixel(aland['y2'],aland['x1'], r, g, b)
+        unicornhathd.set_pixel(aland['y2'],aland['x2'], r, g, b)
         unicornhathd.show()
         time.sleep(0.005)
     if port == turku['name']:
@@ -490,14 +490,14 @@ def set_current_port_color(port):
 ##################################
 
 def set_final_destination_color(port):
-    if port == åland['name']:
+    if port == aland['name']:
         r = 255
         g = 255
         b = 255
-        unicornhathd.set_pixel(åland['y1'],åland['x1'], r, g, b)
-        unicornhathd.set_pixel(åland['y1'],åland['x2'], r, g, b)
-        unicornhathd.set_pixel(åland['y2'],åland['x1'], r, g, b)
-        unicornhathd.set_pixel(åland['y2'],åland['x2'], r, g, b)
+        unicornhathd.set_pixel(aland['y1'],aland['x1'], r, g, b)
+        unicornhathd.set_pixel(aland['y1'],aland['x2'], r, g, b)
+        unicornhathd.set_pixel(aland['y2'],aland['x1'], r, g, b)
+        unicornhathd.set_pixel(aland['y2'],aland['x2'], r, g, b)
         unicornhathd.show()
         time.sleep(0.005)
     if port == turku['name']:
@@ -570,4 +570,4 @@ def set_final_destination_color(port):
         unicornhathd.set_pixel(oulu['y2'],oulu['x2'], r, g, b)
         unicornhathd.show()
         time.sleep(0.005)
- """
+ 

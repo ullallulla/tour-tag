@@ -18,6 +18,15 @@ install requirements
 $ pip install -r requirements.txt
 
 ```
+create .env file to the root of tourtag directory
+
+add a secret key to  .env
+
+```
+SECRET_KEY=your-secret-key
+
+```
+
 setup flask while being in the tourtag directory
 
 linux

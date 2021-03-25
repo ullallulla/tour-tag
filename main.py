@@ -83,8 +83,8 @@ def set_ports():
                 origin_port = origin_port_new
                 destination_ports = destination_ports_new
                 #print(destination_ports)
-                #set_origin_port_color(origin_port)
-                #set_destination_port_color(destination_ports)
+                set_origin_port_color(origin_port)
+                set_destination_port_color(destination_ports)
 
 
 
@@ -94,7 +94,7 @@ def set_ports():
             else:
                 next_port = request.form.get('next_port')
                 #print(request.form.get('next_port'))
-                #set_next_port_color(next_port)
+                set_next_port_color(next_port)
                 return redirect(url_for('main.set_ports'))
 
 
@@ -135,7 +135,7 @@ def set_ports():
                 error = "You have already departed"
             else:
                 #print('departed')
-                #set_departed(next_port, current_port, origin_port)
+                set_departed(next_port, current_port, origin_port)
                 log_departure(next_port)
                 session['departed'] = True
                 session['departure_time'] = None
