@@ -1,6 +1,5 @@
-""" #import unicornhathd
-#import time, colorsys
-#import numpy
+import unicornhathd
+import time, colorsys
 from .ports import *
 from .main import *
 
@@ -570,4 +569,4 @@ def set_final_destination_color(port):
         unicornhathd.set_pixel(oulu['y2'],oulu['x1'], r, g, b)
         unicornhathd.set_pixel(oulu['y2'],oulu['x2'], r, g, b)
         unicornhathd.show()
-        time.sleep(0.005) """
+        time.sleep(0.005)

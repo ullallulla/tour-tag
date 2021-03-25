@@ -19,7 +19,7 @@ def login():
     
     session['boat_name'] = boat_name
 
-    print(user)
+    #print(user)
     if not user:
         flash('Please input login details.')
         return render_template('login.html')
@@ -30,7 +30,7 @@ def login():
         flash('Please input login details.')
         return render_template('login.html')
     login_user(user)
-    print(boat_name)
+    #print(boat_name)
 
     if name == 'Driver':
         return redirect(url_for('main.set_departure_time'))

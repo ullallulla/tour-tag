@@ -1,10 +1,8 @@
 from flask import Blueprint, render_template, request, jsonify, flash, redirect, url_for, session
 from flask_login import login_required, current_user
 from . import db
-from .models import User
 from .models import Data
 from .ports import *
-import datetime
 from .colors import *
 from .log import *
 
@@ -35,7 +33,7 @@ def set_departure_time():
         if error is None:
             global departure
             departure = departure_time
-            print('departure time', departure_time)
+            #print('departure time', departure_time)
             return redirect(url_for('main.index'))
 
         flash(error)
@@ -59,8 +57,8 @@ def set_ports():
             #current_port = request.form.get('current_port')
             destination_ports_new = request.form.getlist('destination_port')
 
-            print('origin port',origin_port_new)
-            print('destination port',destination_ports_new)
+            #print('origin port',origin_port_new)
+            #print('destination port',destination_ports_new)
             #print(request.form.get('reset'), 'reset')
             
             current_port = origin_port
@@ -85,13 +83,12 @@ def set_ports():
                 error = 'Next port is required'
             else:
                 next_port = request.form.get('next_port')
-                print(request.form.get('next_port'))
-                #set_next_port_color(next_port)
+                #print(request.form.get('next_port'))
+                set_next_port_color(next_port)
                 return redirect(url_for('main.set_ports'))
 
 
         if request.form.get('reset') == 'Reset ports':
-            print('asd')
             clear_ports()
             origin_port = None
             destination_ports = None
@@ -117,8 +114,8 @@ def set_ports():
             if next_port is None:
                 error = 'Next port needs to be set before departure'
             else:
-                print('departed')
-                #set_departed(next_port, current_port, origin_port)
+                #print('departed')
+                set_departed(next_port, current_port, origin_port)
                 log_departure(next_port)
                 return redirect(url_for('main.set_ports', destination_ports=destination_ports))
 
