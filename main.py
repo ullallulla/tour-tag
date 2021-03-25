@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, jsonify, flash, redirect, url_for
+from flask import Blueprint, render_template, request, jsonify, flash, redirect, url_for, session
 from flask_login import login_required, current_user
 from . import db
 from .models import User
@@ -6,6 +6,7 @@ from .models import Data
 from .ports import *
 import datetime
 from .colors import *
+from .log import *
 
 main = Blueprint('main', __name__)
 
@@ -23,6 +24,7 @@ def index():
 @main.route('/departure', methods=["GET", "POST"])
 @login_required
 def set_departure_time():
+    boat_name = session.get('boat_name', None)
     if request.method == "POST":
         error = None
         departure_time = request.form["departure_time"]
@@ -37,7 +39,7 @@ def set_departure_time():
             return redirect(url_for('main.index'))
 
         flash(error)
-    return render_template("departure.html", name=current_user.name)
+    return render_template("departure.html", name=current_user.name, boat_name=boat_name)
 
 @main.route('/leader', methods=["GET", "POST"])
 @login_required
@@ -104,6 +106,7 @@ def set_ports():
                 error = ('No destination set, please set the destination via ''Next port''')
             else:
                 set_arrived(next_port, destination_ports)
+                log_arrival(next_port)
                 current_port = next_port
                 next_port = None
                 return redirect(url_for('main.set_ports', destination_ports=destination_ports))
@@ -115,7 +118,8 @@ def set_ports():
                 error = 'Next port needs to be set before departure'
             else:
                 print('departed')
-                set_departed(next_port, current_port, origin_port)
+                #set_departed(next_port, current_port, origin_port)
+                log_departure(next_port)
                 return redirect(url_for('main.set_ports', destination_ports=destination_ports))
 
 
@@ -128,3 +132,27 @@ def set_ports():
         flash(error)
 
     return render_template("leader.html", name=current_user.name, destination_ports=destination_ports)
+
+
+
+@main.route('/data/<boat>')
+@login_required
+def boat_search(boat):
+    
+    
+    boat_data = Data.query.filter_by(boat_id=boat).all()
+
+    boat_list = []
+        
+
+
+    for boat in boat_data:
+         boat_dict = {}
+         boat_dict['id']=boat.id
+         boat_dict['boat']=boat.boat_id
+         boat_dict['port']=boat.port
+         boat_dict['arrival_time']=boat.arrival_time
+         boat_dict['departure_time']=boat.departure_time
+         boat_list.append(boat_dict)
+
+    return jsonify({'boat_data' : boat_list})

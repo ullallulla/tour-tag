@@ -1,109 +1,48 @@
 {% extends "base.html" %}
 
 {% block content %}
+<div class="column is-4 is-offset-4">
+    <h3 class="title">Boat Data</h3>
+    <div class="box">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="notification is-danger">
+                {{ messages[0] }}
+            </div>
+        {% endif %}
+        {% endwith %}
+        <form method="POST" action="/data">
+            <div class="field">
+                <div class="control">
+                    <input class="input is-large" type="text" name="boat_name" placeholder="Boat name" autofocus="">
+                </div>
+            </div>
 
-{% if grid != None %}
-    <div class="column" style="width: 300px;">{{ grid }}</div>
-{% endif %}
+            <div class="field">
+                <div class="control">
+                    <input class="input is-large" type="text" name="port_name" placeholder="Port name">
+                </div>
+            </div>
 
-<div class="container">
-{% with messages = get_flashed_messages() %}
-  {% if messages %}
-    {% for message in messages %}
-      <div class="notification is-danger">{{ message }}</div>
-    {% endfor %}
-  {% endif %}
-{% endwith %}
+            <div class="field">
+                <div class="control">
+                    <input class="input is-large" type="text" name="arrival_time" placeholder="Arrival time">
+                </div>
+            </div>
+
+            <div class="field">
+                <div class="control">
+                    <input class="input is-large" type="text" name="departure_time" placeholder="Departure time">
+                </div>
+            </div>
+
+            <button class="button is-block is-info is-large is-fullwidth">Add</button>
+        </form>
+    </div>
 </div>
 
-<h1 class="title">
-  Welcome, {{ name }}!
-</h1>
 
-<form method="POST">
-    <h3 class="title">Next port</h3>
-
-    {% if 'Ahvenanmaa' in new_destination_ports %}
-    <div class="control">
-        <label class="radio">
-            <input type="radio" name="next_port" value="Ahvenanmaa">
-            Ahvenanmaa
-        </label>
-    </div>
-    {% endif %}
-    {% if 'Turku' in new_destination_ports %}
-    <div class="control">
-        <label class="radio">
-            <input type="radio" name="next_port" value="Turku">
-            Turku
-        </label>
-    </div>
-    {% endif %}
-    {% if 'Helsinki' in new_destination_ports %}
-    <div class="control">
-        <label class="radio">
-            <input type="radio" name="next_port" value="Helsinki">
-            Helsinki
-        </label>
-    </div>
-    {% endif %}
-    {% if 'Hamina' in new_destination_ports %}
-    <div class="control">
-        <label class="radio">
-            <input type="radio" name="next_port" value="Hamina">
-            Hamina
-        </label>
-    </div>
-    {% endif %}
-    {% if 'Pori' in new_destination_ports %}
-    <div class="control">
-        <label class="radio">
-            <input type="radio" name="next_port" value="Pori">
-            Pori
-        </label>
-    </div>
-    {% endif %}
-    {% if 'Vaasa' in new_destination_ports %}
-    <div class="control">
-        <label class="radio">
-            <input type="radio" name="next_port" value="Vaasa">
-            Vaasa
-        </label>
-    </div>
-    {% endif %}
-    {% if 'Kokkola' in new_destination_ports %}
-    <div class="control">
-        <label class="radio">
-            <input type="radio" name="next_port" value="Kokkola">
-            Kokkola
-        </label>
-    </div>
-    {% endif %}
-    {% if 'Oulu' in new_destination_ports %}
-    <div class="control">
-        <label class="radio">
-            <input type="radio" name="next_port" value="Oulu">
-            Oulu
-        </label>
-    </div>
-    {% endif %}
-    {% if new_destination_ports|length < 1 %}
-    <div class="control">
-        <label class="radio">
-            <input type="radio" name="next_port" value="Arrival">
-            Arrival
-        </label>
-    </div>
-    {% endif %}
-
-    <input class="button is-light" type="submit" value="State Update">
-
-</form>
-
-<br /> 
-<p align="center"><a href=/ >
-    <button class='button is-light'>Home</button></a></p>
-
+{{botski}}
 
 
 {% endblock %}
