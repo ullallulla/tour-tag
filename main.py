@@ -8,7 +8,6 @@ from .log import *
 
 main = Blueprint('main', __name__)
 
-departure = None
 origin_port = None
 destination_ports = None
 next_port = None
@@ -17,22 +16,24 @@ current_port = None
 
 @main.route('/')
 def index():
+    departure = session.get('departure_time', None)
     return render_template('index.html', departure=departure, origin_port=origin_port, destination_ports=destination_ports, next_port=next_port, current_port=current_port)
 
 @main.route('/departure', methods=["GET", "POST"])
 @login_required
 def set_departure_time():
     boat_name = session.get('boat_name', None)
+
     if request.method == "POST":
         error = None
         departure_time = request.form["departure_time"]
-
         if not departure_time:
             error = "Time is required"
 
         if error is None:
-            global departure
-            departure = departure_time
+            session['departure_time'] = departure_time
+
+            
             #print('departure time', departure_time)
             return redirect(url_for('main.index'))
 
@@ -60,7 +61,6 @@ def set_ports():
             origin_port_new = request.form.get('origin_port')
             #current_port = request.form.get('current_port')
             destination_ports_new = request.form.getlist('destination_port')
-            print('new',request.form.getlist('destination_port'))
             #print('origin port',origin_port_new)
             #print('destination port',destination_ports_new)
             #print(request.form.get('reset'), 'reset')
@@ -82,7 +82,7 @@ def set_ports():
             else:
                 origin_port = origin_port_new
                 destination_ports = destination_ports_new
-                print(destination_ports)
+                #print(destination_ports)
                 #set_origin_port_color(origin_port)
                 #set_destination_port_color(destination_ports)
 
@@ -128,7 +128,7 @@ def set_ports():
 
         if request.form.get('departed-button') == 'Departed':
             departed = session.get('departed')
-            print(departed)
+            #print(departed)
             if next_port is None:
                 error = 'Next port needs to be set before departure'
             elif departed is True:
@@ -138,6 +138,7 @@ def set_ports():
                 #set_departed(next_port, current_port, origin_port)
                 log_departure(next_port)
                 session['departed'] = True
+                session['departure_time'] = None
                 return redirect(url_for('main.set_ports'))
 
 
